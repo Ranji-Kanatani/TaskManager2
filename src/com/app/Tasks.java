@@ -7,7 +7,7 @@ public class Tasks {
     public Tasks(Task task){
         tasks.add(task); //二次元にせなあかんな～
     }
-    public void Remove(int num){
+    public void remove(int num){
         tasks.remove(num);
     }
 }

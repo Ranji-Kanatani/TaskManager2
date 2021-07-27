@@ -7,7 +7,7 @@ public class TaskName {
         this.taskName = taskName;
     }
 
-    public String Name(){
+    public String getName(){
         return taskName;
     }
 }

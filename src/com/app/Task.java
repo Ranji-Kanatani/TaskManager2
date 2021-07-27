@@ -10,12 +10,12 @@ public class Task implements Tasker{
     }
 
     @Override
-    public TaskName TaskName(){
+    public TaskName getTaskName(){
         return this.taskName;
     }
 
     @Override
-    public Point Point() {
+    public Point getPoint() {
         return this.point;
     }
 }
