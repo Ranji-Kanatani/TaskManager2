@@ -12,13 +12,13 @@ public enum Menu {
         this.menuName = menuName;
     }
 
-    public String Menu(){
+    public String getMenu(){
         return this.menuName;
     }
 
-    public Menu MenuName(String menuName) {
+    public Menu toMenu(String menuName) {
         for (Menu m : values()) {
-            if (m.Menu().equals(menuName)) {
+            if (m.getMenu().equals(menuName)) {
                 return m;
             }
         }
