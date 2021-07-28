@@ -16,7 +16,8 @@ public class Main {
             switch (menu.toMenu(inputMenu)) {
                 case REGISTER_TASK:
                     System.out.println("REGISTER_TASK");
-                    tasks = RegisterTask.registerTask();
+                    RegisterTask regTask = new RegisterTask(tasks);
+                    tasks = regTask.registerTask(tasks);
                     break;
                 case REMOVE_TASK:
                     System.out.println("REMOVE_TASK");

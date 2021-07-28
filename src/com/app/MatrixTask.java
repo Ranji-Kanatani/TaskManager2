@@ -1,6 +1,7 @@
 package com.app;
 
 import java.lang.reflect.Array;
+import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -12,11 +13,15 @@ public class MatrixTask {
         int urgencyMax = 0;
         int importanceMin = 0;
         int urgencyMin = 0;
+        int taskNameMaxLength = 0;
+        String importanceNum;
+        String urgencyNum;
         for (Task task : tasks) {
             importanceMax = max(importanceMax, task.getPoint().getImportance());
             urgencyMax = max(urgencyMax, task.getPoint().getUrgency());
             importanceMin = min(importanceMin, task.getPoint().getImportance());
             urgencyMin = min(urgencyMin, task.getPoint().getUrgency());
+            taskNameMaxLength = max(taskNameMaxLength, task.getTaskName().getName().length());
         }
         Task[][] matrixTasks = new Task[importanceMax + 1][urgencyMax + 1];
         for (Task task : tasks) {
@@ -24,27 +29,32 @@ public class MatrixTask {
         }
 //        System.out.println(Arrays.deepToString(matrixTasks));
         int cnt = 0;
-        StringBuilder importanceLine = new StringBuilder("");
+        StringBuilder sideLine = new StringBuilder("");
+        String nowTaskname;
         for (int u = urgencyMax; u >= urgencyMin; u--) {
+            urgencyNum = Integer.valueOf(u).toString();
+            sideLine.append(format(urgencyNum, taskNameMaxLength));
             for (int i = importanceMin; i <= importanceMax; i++) {
-                importanceLine.append(Integer.valueOf(i).toString());
-                importanceLine.append(" ");
-            }
-            importanceLine.append("\n");
-            for (int i = importanceMin; i <= importanceMax; i++) {
-                if (i == importanceMin) importanceLine.append(Integer.valueOf(u).toString());
                 if (matrixTasks[i][u] == null) {
-                    importanceLine.append("0");
-                    importanceLine.append(" ");
+                    sideLine.append(format("0", taskNameMaxLength));
+                    sideLine.append(" ");
                 } else if
                 (matrixTasks[i][u].getPoint().getImportance() == i && matrixTasks[i][u].getPoint().getUrgency() == u) {
-                    importanceLine.append(matrixTasks[i][u].getTaskName().getName());
-                    importanceLine.append(" ");
+                    nowTaskname = matrixTasks[i][u].getTaskName().getName();
+                    sideLine.append(format(nowTaskname, taskNameMaxLength));
+                    sideLine.append(" ");
                 }
             }
-            importanceLine.append("\n");
+            sideLine.append("\n");
         }
-        String matrix = importanceLine.toString();
+        sideLine.append(format(" ",taskNameMaxLength));
+        for (int i = importanceMin; i <= importanceMax; i++) {
+            importanceNum = Integer.valueOf(i).toString();
+            sideLine.append(format(importanceNum, taskNameMaxLength));
+            sideLine.append(" ");
+        }
+        sideLine.append("\n");
+        String matrix = sideLine.toString();
         System.out.println("-------  max min----------");
         System.out.println("重要度max：" + Integer.valueOf(importanceMax).toString());
         System.out.println("緊急度max：" + Integer.valueOf(urgencyMax).toString());
@@ -52,5 +62,14 @@ public class MatrixTask {
         System.out.println("緊急度min：" + Integer.valueOf(urgencyMin).toString());
         System.out.println("-----------------");
         System.out.println(matrix);
+    }
+
+    private static String format(String target, int length) {
+        int byteDiff = (getByteLength(target, Charset.forName("UTF-8")) - target.length()) / 2;
+        return String.format("%-" + (length - byteDiff) + "s", target);
+    }
+
+    private static int getByteLength(String string, Charset charset) {
+        return string.getBytes(charset).length;
     }
 }
