@@ -19,6 +19,11 @@ public class Main {
                     RegisterTask regTask = new RegisterTask(tasks);
                     tasks = regTask.registerTask(tasks);
                     break;
+                case UPDATE_TASK:
+                    System.out.println("UPDATE_TASK");
+                    UpdateTask upTask = new UpdateTask(tasks);
+                    tasks = upTask.updateTask(tasks);
+                    break;
                 case REMOVE_TASK:
                     System.out.println("REMOVE_TASK");
                     tasks = RemoveTask.removeTask(tasks);
@@ -43,19 +48,19 @@ public class Main {
     }
 
     public static void showMenu() {
-        System.out.println(
-                "0:REGISTER_TASK" + "\n" +
-                "1:REMOVE_TASK" + "\n" +
-                "2:SHOW_ALL_TASK" + "\n" +
-                "3:SHOW_MATRIX_TASK" + "\n" +
-                "4:FINISH");
+        for (Menu menu : Menu.values()) {
+            System.out.println(menu.getMenuNum() + ":" + menu.toString());
+        }
         System.out.println("メニューを選んでください");
     }
-    public static void showAllTask(ArrayList<Task> tasks){
-        for (Task task : tasks){
-            System.out.println(task.getTaskName().getName() + " " +
+
+    public static void showAllTask(ArrayList<Task> tasks) {
+        for (Task task : tasks) {
+            System.out.println(
+                    task.getTaskName().getName() + " " +
                     task.getPoint().getImportance() + " " +
-                    task.getPoint().getUrgency());
+                    task.getPoint().getUrgency()
+            );
         }
         System.out.println("");
     }

@@ -2,26 +2,30 @@ package com.app;
 
 public enum Menu {
     REGISTER_TASK("0"),
-    REMOVE_TASK("1"),
-    SHOW_ALL_TASK("2"),
-    SHOW_MATRIX_TASK("3"),
-    FINISH("4");
-    private final String menuName;
+    UPDATE_TASK("1"),
+    REMOVE_TASK("2"),
+    SHOW_ALL_TASK("3"),
+    SHOW_MATRIX_TASK("4"),
+    FINISH("5");
+    private final String menuNum;
 
-    Menu (String menuName){
-        this.menuName = menuName;
+    Menu (String menuNum){
+        this.menuNum = menuNum;
     }
 
-    public String getMenu(){
-        return this.menuName;
+    public String getMenuNum(){
+        return this.menuNum;
     }
 
-    public Menu toMenu(String menuName) {
+    public Menu toMenu(String menuNum) {
         for (Menu m : values()) {
-            if (m.getMenu().equals(menuName)) {
+            if (m.getMenuNum().equals(menuNum)) {
                 return m;
             }
         }
         return Menu.FINISH;
+    }
+    public static int getLength(){
+        return Menu.values().length;
     }
 }
