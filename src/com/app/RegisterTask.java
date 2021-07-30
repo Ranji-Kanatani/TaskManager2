@@ -9,9 +9,11 @@ import static java.lang.Math.*;
 
 public class RegisterTask {
     ArrayList<Task> tasks = new ArrayList<Task>();
-    public RegisterTask(ArrayList<Task> tasks){
+
+    public RegisterTask(ArrayList<Task> tasks) {
         this.tasks = tasks;
     }
+
     public ArrayList<Task> registerTask(ArrayList<Task> tasks) {
 //        int importanceMax = 0;
 //        int urgencyMax = 0;

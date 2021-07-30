@@ -47,7 +47,7 @@ public class MatrixTask {
             }
             sideLine.append("\n");
         }
-        sideLine.append(format(" ",taskNameMaxLength));
+        sideLine.append(format(" ", taskNameMaxLength));
         for (int i = importanceMin; i <= importanceMax; i++) {
             importanceNum = Integer.valueOf(i).toString();
             sideLine.append(format(importanceNum, taskNameMaxLength));

@@ -58,8 +58,8 @@ public class Main {
         for (Task task : tasks) {
             System.out.println(
                     task.getTaskName().getName() + " " +
-                    task.getPoint().getImportance() + " " +
-                    task.getPoint().getUrgency()
+                            task.getPoint().getImportance() + " " +
+                            task.getPoint().getUrgency()
             );
         }
         System.out.println("");

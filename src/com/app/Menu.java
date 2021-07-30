@@ -9,11 +9,11 @@ public enum Menu {
     FINISH("5");
     private final String menuNum;
 
-    Menu (String menuNum){
+    Menu(String menuNum) {
         this.menuNum = menuNum;
     }
 
-    public String getMenuNum(){
+    public String getMenuNum() {
         return this.menuNum;
     }
 
@@ -25,7 +25,8 @@ public enum Menu {
         }
         return Menu.FINISH;
     }
-    public static int getLength(){
+
+    public static int getLength() {
         return Menu.values().length;
     }
 }
